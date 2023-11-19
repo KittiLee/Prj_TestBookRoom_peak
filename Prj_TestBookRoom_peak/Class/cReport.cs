@@ -25,8 +25,9 @@ namespace Prj_TestBookRoom_peak.Class
                 {
                     Console.WriteLine(tMsg);
                 }
-                Console.WriteLine(string.Format(@"Path file output: {0}",new cLog().tC_PthFleOutput));
                 Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(string.Format(@"Path file output: {0}",new cLog().tC_PthFleOutput));
+         
             } else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
