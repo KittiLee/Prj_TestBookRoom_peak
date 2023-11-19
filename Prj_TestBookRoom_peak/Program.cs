@@ -28,7 +28,9 @@ namespace Prj_TestBookRoom_peak
             //string tFilePath = "ตัวอย่าง.txt";
             if (!File.Exists(tFilePath))
             {
-                tFilePath = Path.GetDirectoryName(tFilePath);
+                 tBaseDirectory = Path.GetDirectoryName(tFilePath);
+                 tBaseDirectory = Directory.GetParent( Directory.GetParent(tBaseDirectory).FullName).FullName;
+                 tFilePath = Path.Combine(tBaseDirectory, tFileName);
                 if (File.Exists(tFilePath))
                 {
                     bExit = true;
