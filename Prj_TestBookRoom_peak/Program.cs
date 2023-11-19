@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Prj_TestBookRoom_peak.Class;
 using Prj_TestBookRoom_peak;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Prj_TestBookRoom_peak
 {
@@ -21,18 +22,28 @@ namespace Prj_TestBookRoom_peak
 
             // ระบุชื่อไฟล์ที่ต้องการอ่าน
             string tFileName = "input.txt";
-
+            bool bExit = false;
             // รวมที่อยู่ของไดเรกทอรีและชื่อไฟล์
             string tFilePath = Path.Combine(tBaseDirectory, tFileName);
             //string tFilePath = "ตัวอย่าง.txt";
- 
+            if (!File.Exists(tFilePath))
+            {
+                tFilePath = Path.GetDirectoryName(tFilePath);
+                if (File.Exists(tFilePath))
+                {
+                    bExit = true;
+                }
+            } else
+            {
+                bExit = true;
+            }                
             cRoom oRoom = new cRoom();
             cBook oBook = new cBook();
             cReport oReport = new cReport();
             List<string> lsMsgOutput = new List<string>();
             try
             {
-                if (File.Exists(tFilePath))
+                if (bExit)
                 {
                     Console.WriteLine(string.Format(@"Path file input: {0}", tFilePath));
                     Console.WriteLine(@"Input >>>>> ");
@@ -121,9 +132,11 @@ namespace Prj_TestBookRoom_peak
             finally
             {
                 oReport.C_SHWxWriteConsose(lsMsgOutput);
+
                 new cFile().C_OPENxFileWithNotepad(new cLog().tC_PthFleOutput);
                 Console.WriteLine("<Press Any Key to Continue.>");
                 Console.ReadKey();
+                oRoom=null; oBook=null;oReport=null;
                 Environment.Exit(0);
             }
         }
