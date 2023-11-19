@@ -8,6 +8,7 @@ namespace Prj_TestBookRoom_peak.Models
 {
     public class cmlRoom
     {
+        //Class Model เก็บข้อมูลห่องพัก Room
         public string FTRoomId { get; set; } //Pk
         public string FTRoomSta { get; set; } //0 : ว่าง 1 : ไม่ว่าง
     }

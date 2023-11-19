@@ -8,6 +8,7 @@ namespace Prj_TestBookRoom_peak.Models
 {
     public class cmlBook
     {
+        //Class Model เก็บการเข้าพัก
         public int FNBookId { get; set; }  //Pk
         public string FTRoomId { get; set; } //ref key
         public int FNKeycard { get; set; } //ref key
